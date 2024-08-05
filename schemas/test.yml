@@ -1,20 +1,27 @@
----
-version: '1.0'
+generics:
+  - name: GenericDevice
+    namespace: Infra
+    icon: "mdi:router"
+    default_filter: "name__value"
+    attributes:
+      - name: name
+        kind: Text
+        unique: true
+        order_weight: 1000
+
+  - name: Asset
+    namespace: Infra
+    icon: "mdi:server"
+    attributes:
+      - name: asset_tag
+        label: Asset Tag
+        kind: Text
+        unique: true
+        order_weight: 1000
+
 nodes:
-  - name: Region
-    namespace: Location
-    icon: "mdi:web"
-    include_in_menu: true
-    label: "Region"
-  - name: Site
-    namespace: Location
-    icon: "mdi:domain"
-    include_in_menu: true
-    menu_placement: "LocationRegion"
-    label: "Site"
-  - name: Rack
-    namespace: Location
-    icon: "mdi:server-outline"
-    include_in_menu: true
-    menu_placement: "LocationRegion"
-    label: "Rack"
+  - name: Device
+    namespace: Infra
+    inherit_from:
+      - "InfraGenericDevice"
+      - "InfraAsset"
