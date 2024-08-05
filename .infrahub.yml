@@ -1,6 +1,6 @@
 ---
 schemas:
-  - schemas/test.yml
+  - schemas/
 
   
 jinja2_transforms:
