@@ -1,24 +1,27 @@
-version: '1.0'
 generics:
-  - name: Generic
-    namespace: Location
-    hierarchical: true
+  - name: GenericDevice
+    namespace: Infra
+    icon: "mdi:router"
+    default_filter: "name__value"
     attributes:
       - name: name
         kind: Text
+        unique: true
+        order_weight: 1000
+
+  - name: Asset
+    namespace: Infra
+    icon: "mdi:server"
+    attributes:
+      - name: asset_tag
+        label: Asset Tag
+        kind: Text
+        unique: true
+        order_weight: 1000
+
 nodes:
-  - name: Region
-    namespace: Location
-    inherit_from: ["LocationGeneric"]
-    parent: ""
-    children: "LocationCountry"
-  - name: Country
-    namespace: Location
-    inherit_from: ["LocationGeneric"]
-    parent: "LocationRegion"
-    children: "LocationCity"
-  - name: City
-    namespace: Location
-    inherit_from: ["LocationGeneric"]
-    parent: "LocationCountry"
-    children: ""
+  - name: Device
+    namespace: Infra
+    inherit_from:
+      - "InfraGenericDevice"
+      - "InfraAsset"
