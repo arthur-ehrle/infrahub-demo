@@ -1,28 +1,24 @@
 version: '1.0'
-generics:
-  - name: GenericDevice
-    namespace: Infra
-    icon: "mdi:router"
-    default_filter: "name__value"
+nodes:
+  - name: Widget
+    namespace: Test
+    label: "Widget"
+    default_filter: name__value
+    display_labels:
+      - name__value
     attributes:
       - name: name
         kind: Text
         unique: true
-        order_weight: 1000
-
-  - name: Asset
-    namespace: Infra
-    icon: "mdi:server"
+      - name: count
+        kind: Number
+  - name: Resource
+    namespace: Test
+    label: "Resource"
+    default_filter: name__value
+    display_labels:
+      - name__value
     attributes:
-      - name: asset_tag
-        label: Asset Tag
+      - name: name
         kind: Text
         unique: true
-        order_weight: 1000
-
-nodes:
-  - name: Device
-    namespace: Infra
-    inherit_from:
-      - "InfraGenericDevice"
-      - "InfraAsset"
