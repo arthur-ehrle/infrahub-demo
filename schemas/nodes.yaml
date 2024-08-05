@@ -1,66 +1,24 @@
----
 version: '1.0'
 generics:
-  - name: Interface
-    namespace: Network
+  - name: Generic
+    namespace: Location
+    hierarchical: true
     attributes:
       - name: name
         kind: Text
-        label: Name
-      - name: description
-        state: absent
-        kind: Text
-        optional: true
-        label: Description
-      - name: mtu
-        kind: Number
-        label: MTU
-        optional: false
-        default_value: 1500
-      - name: enabled
-        label: Enabled
-        kind: Boolean
-        optional: false
-        default_value: false
-    relationships:
-      - name: device
-        label: Device
-        cardinality: one
-        peer: NetworkDevice
-        kind: Parent
-        optional: false
 nodes:
-  - name: Device
-    namespace: Network
-    default_filter: hostname__value
-    attributes:
-      - name: hostname
-        kind: Text
-        label: Hostname
-      - name: device_type
-        label: Device Type
-        kind: Text
-        id: 17bcf8a7-9c03-4a6a-3295-c51345cb1c33
-    relationships:
-      - name: interfaces
-        label: Interfaces
-        cardinality: many
-        peer: NetworkInterface
-        kind: Component
-  - name: PhysicalInterface
-    namespace: Network
-    uniqueness_constraints:
-      - ["device", "name__value"]
-    inherit_from:
-      - NetworkInterface
-    attributes:
-      - name: speed
-        label: Speed (bps)
-        kind: Number
-        default_value: 1000000000
-  - name: LogicalInterface
-    namespace: Network
-    uniqueness_constraints:
-      - ["device", "name__value"]
-    inherit_from:
-      - NetworkInterface
+  - name: Region
+    namespace: Location
+    inherit_from: ["LocationGeneric"]
+    parent: ""
+    children: "LocationCountry"
+  - name: Country
+    namespace: Location
+    inherit_from: ["LocationGeneric"]
+    parent: "LocationRegion"
+    children: "LocationCity"
+  - name: City
+    namespace: Location
+    inherit_from: ["LocationGeneric"]
+    parent: "LocationCountry"
+    children: ""
