@@ -4,7 +4,7 @@ schemas:
 
 generator_definitions:
   - name: widget_generator
-    file_path: "widget_generator.py"
+    file_path: "example_generator/widget_generator.py"
     targets: widgets
     query: widget_query
     class_name: WidgetGenerator
