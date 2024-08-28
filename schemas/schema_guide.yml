@@ -36,6 +36,7 @@ nodes:
         kind: Text
       - name: location
         kind: Text
+        unique: false
   - name: VirtualDevice
     namespace: Network
     uniqueness_constraints:
