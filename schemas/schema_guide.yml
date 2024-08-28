@@ -1,0 +1,42 @@
+version: "1.0"
+nodes:
+  - name: Device
+    namespace: Network
+    default_filter: hostname__value
+    attributes:
+      - name: hostname
+        kind: Text
+        unique: true
+      - name: model
+        kind: Text
+    relationships:
+      - name: interfaces
+        cardinality: many
+        peer: NetworkInterface
+        kind: Component
+  - name: Interface
+    namespace: Network
+    attributes:
+      - name: name
+        kind: Text
+      - name: description
+        kind: Text
+        optional: true
+    relationships:
+      - name: device
+        cardinality: one
+        peer: NetworkDevice
+        optional: false
+  - name: Bay
+    namespace: Network
+    attributes:
+      - name: name
+        kind: Text
+      - name: location
+        kind: Text
+        unique: true
+    relationships:
+      - name: device
+        cardinality: one
+        peer: NetworkDevice
+        optional: false
