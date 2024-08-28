@@ -41,3 +41,6 @@ nodes:
     namespace: Network
     inherit_from:
       - NetworkInterface
+    attributes:
+      - name: Vlan number
+        kind: Number
