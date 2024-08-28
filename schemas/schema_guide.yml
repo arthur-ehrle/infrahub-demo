@@ -42,5 +42,5 @@ nodes:
     inherit_from:
       - NetworkInterface
     attributes:
-      - name: 'Vlan number'
+      - name: vlanNumber
         kind: Number
