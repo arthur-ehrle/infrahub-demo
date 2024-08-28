@@ -27,6 +27,7 @@ nodes:
         cardinality: one
         peer: NetworkDevice
         optional: false
+        kind: Parent
   - name: Bay
     namespace: Network
     attributes:
@@ -34,9 +35,3 @@ nodes:
         kind: Text
       - name: location
         kind: Text
-        unique: true
-    relationships:
-      - name: device
-        cardinality: one
-        peer: NetworkDevice
-        optional: false
