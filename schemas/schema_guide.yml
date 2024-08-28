@@ -1,5 +1,21 @@
+---
 version: "1.0"
 generics:
+  - name: Interface
+    namespace: Network
+    attributes:
+      - name: name
+        kind: Text
+      - name: description
+        kind: Text
+        optional: true
+    relationships:
+      - name: device
+        cardinality: one
+        peer: NetworkDevice
+        kind: Parent
+        optional: false
+nodes:
   - name: Device
     namespace: Network
     default_filter: hostname__value
@@ -14,43 +30,14 @@ generics:
         cardinality: many
         peer: NetworkInterface
         kind: Component
-nodes:
-  - name: Interface
+  - name: PhysicalInterface
     namespace: Network
-    attributes:
-      - name: name
-        kind: Text
-      - name: description
-        kind: Text
-        optional: true
-    relationships:
-      - name: device
-        cardinality: one
-        peer: NetworkDevice
-        optional: false
-        kind: Parent
-  - name: Bay
-    namespace: Network
-    attributes:
-      - name: name
-        kind: Text
-      - name: location
-        kind: Text
-  - name: VirtualDevice
-    namespace: Network
-    uniqueness_constraints:
-      - ["bay", "name__value"]
     inherit_from:
-      - NetworkDevice
+      - NetworkInterface
     attributes:
-      - name: hypervisor
-        kind: Text
-  - name: PhysicalDevice
-    namespace: Network
-    uniqueness_constraints:
-      - ["bay", "name__value"]
-    inherit_from:
-      - NetworkDevice
-    attributes:
-      - name: age
+      - name: speed
         kind: Number
+  - name: LogicalInterface
+    namespace: Network
+    inherit_from:
+      - NetworkInterface
