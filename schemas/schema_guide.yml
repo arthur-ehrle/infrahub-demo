@@ -1,5 +1,5 @@
 version: "1.0"
-nodes:
+generics:
   - name: Device
     namespace: Network
     default_filter: hostname__value
@@ -14,6 +14,7 @@ nodes:
         cardinality: many
         peer: NetworkInterface
         kind: Component
+nodes:
   - name: Interface
     namespace: Network
     attributes:
@@ -35,3 +36,21 @@ nodes:
         kind: Text
       - name: location
         kind: Text
+  - name: VirtualDevice
+    namespace: Network
+    uniqueness_constraints:
+      - ["bay", "name__value"]
+    inherit_from:
+      - NetworkDevice
+    attributes:
+      - name: hypervisor
+        kind: text
+  - name: PhysicalDevice
+    namespace: Network
+    uniqueness_constraints:
+      - ["bay", "name__value"]
+    inherit_from:
+      - NetworkDevice
+    attributes:
+      - name: age
+        kind: number
