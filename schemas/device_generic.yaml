@@ -13,7 +13,7 @@ nodes:
   - name: VirtualEquipment
     namespace: Network
     uniqueness_constraints:
-      - ["bay", "name__value"]
+      - ["name__value"]
     inherit_from:
       - NetworkEquipment
     attributes:
@@ -22,7 +22,7 @@ nodes:
   - name: PhysicalEquipment
     namespace: Network
     uniqueness_constraints:
-      - ["bay", "name__value"]
+      - ["name__value"]
     inherit_from:
       - NetworkEquipment
     attributes:
