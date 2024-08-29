@@ -18,7 +18,7 @@ nodes:
       - NetworkEquipment
     attributes:
       - name: hypervisor
-        kind: text
+        kind: Text
   - name: PhysicalEquipment
     namespace: Network
     uniqueness_constraints:
@@ -27,4 +27,4 @@ nodes:
       - NetworkEquipment
     attributes:
       - name: age
-        kind: number
+        kind: Number
