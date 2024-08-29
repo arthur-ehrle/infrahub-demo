@@ -1,0 +1,30 @@
+version: "1.0"
+generics:
+  - name: Equipment
+    namespace: Network
+    default_filter: hostname__value
+    attributes:
+      - name: hostname
+        kind: Text
+        unique: true
+      - name: model
+        kind: Text
+nodes:
+  - name: VirtualEquipment
+    namespace: Network
+    uniqueness_constraints:
+      - ["bay", "name__value"]
+    inherit_from:
+      - NetworkEquipment
+    attributes:
+      - name: hypervisor
+        kind: text
+  - name: PhysicalEquipment
+    namespace: Network
+    uniqueness_constraints:
+      - ["bay", "name__value"]
+    inherit_from:
+      - NetworkEquipment
+    attributes:
+      - name: age
+        kind: number
