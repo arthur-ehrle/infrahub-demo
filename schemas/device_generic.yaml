@@ -12,8 +12,6 @@ generics:
 nodes:
   - name: VirtualEquipment
     namespace: Network
-    uniqueness_constraints:
-      - ["name__value"]
     inherit_from:
       - NetworkEquipment
     attributes:
@@ -21,8 +19,6 @@ nodes:
         kind: Text
   - name: PhysicalEquipment
     namespace: Network
-    uniqueness_constraints:
-      - ["name__value"]
     inherit_from:
       - NetworkEquipment
     attributes:
