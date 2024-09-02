@@ -7,9 +7,7 @@ generics:
       - name: hostname
         kind: Text
         unique: true
-      - name: model
-        kind: Text
-        state: absent
+
 nodes:
   - name: VirtualEquipment
     namespace: Network
